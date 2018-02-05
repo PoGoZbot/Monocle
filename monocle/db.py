@@ -925,7 +925,7 @@ def get_all_sightings(session, pokemon_ids):
 
 def get_spawns_per_hour(session, pokemon_id):
     if DB_TYPE == 'sqlite':
-        ts_hour = 'STRFTIME("%H", expire_timestamp)'
+        ts_hour = 'STRFTIME("%H", datetime(expire_timestamp,"unixepoch"))'
     elif DB_TYPE == 'postgresql':
         ts_hour = "TO_CHAR(TO_TIMESTAMP(expire_timestamp), 'HH24')"
     else:
